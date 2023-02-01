@@ -1,6 +1,5 @@
 #include "pliki.h"
 #include <fstream>
-#include <unordered_map>
 
 
 bool pustaLinia(std::string line) {
@@ -11,18 +10,19 @@ bool pustaLinia(std::string line) {
 	return true;
 }
 
-void wczytajGraf(const std::string& nazwaPliku) {
+wczytanyGraf wczytajGraf(const std::string& nazwaPliku) {
 	Graf graf;
-
-	std::ifstream plik(nazwaPliku);
-
-	if (!plik.is_open())
-		return;
 
 	//uwagi techniczne
 	unsigned int indexWierzcholka = 0;
 	std::unordered_map<int, int> idPlikoweNaProgram;
 	std::vector<int> idProgramNaPlikowe;
+
+
+	std::ifstream plik(nazwaPliku);
+
+	if (!plik.is_open())
+		return { graf, idPlikoweNaProgram, idProgramNaPlikowe, "Blad otwierania pliku!" };
 
 
 	std::string linia;
@@ -66,4 +66,6 @@ void wczytajGraf(const std::string& nazwaPliku) {
 
 		graf[zWierzcholka].push_back(Krawedz{doWierzcholka, koszt});
 	}
+
+	return { graf, idPlikoweNaProgram, idProgramNaPlikowe, "" };
 }
