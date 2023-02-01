@@ -48,20 +48,22 @@ void wczytajGraf(const std::string& nazwaPliku) {
 		double koszt = stod(linia.substr(dwukropek + 1));
 		
 
-		if (idPlikoweNaProgram.find(doWierzcholkaPlikowego) == idPlikoweNaProgram.end()) {
-			idPlikoweNaProgram[doWierzcholkaPlikowego] = indexWierzcholka;
-			idProgramNaPlikowe.push_back(doWierzcholkaPlikowego);
-			indexWierzcholka++;
-		}
-		unsigned int doWierzcholka = idPlikoweNaProgram[doWierzcholkaPlikowego];
-
 		if (idPlikoweNaProgram.find(zWierzcholkaPlikowego) == idPlikoweNaProgram.end()) {
 			idPlikoweNaProgram[zWierzcholkaPlikowego] = indexWierzcholka;
 			idProgramNaPlikowe.push_back(zWierzcholkaPlikowego);
+			graf.push_back({});
 			indexWierzcholka++;
 		}
 		unsigned int zWierzcholka = idPlikoweNaProgram[zWierzcholkaPlikowego];
 
+		if (idPlikoweNaProgram.find(doWierzcholkaPlikowego) == idPlikoweNaProgram.end()) {
+			idPlikoweNaProgram[doWierzcholkaPlikowego] = indexWierzcholka;
+			idProgramNaPlikowe.push_back(doWierzcholkaPlikowego);
+			graf.push_back({});
+			indexWierzcholka++;
+		}
+		unsigned int doWierzcholka = idPlikoweNaProgram[doWierzcholkaPlikowego];
 
+		graf[zWierzcholka].push_back(Krawedz{doWierzcholka, koszt});
 	}
 }
