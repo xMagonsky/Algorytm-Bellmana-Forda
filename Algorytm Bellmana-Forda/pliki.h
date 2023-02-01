@@ -1,4 +1,11 @@
 #include <string>
+#include <vector>
+
+struct Krawedz {
+	unsigned int wierzcholekDocelowy;
+	double koszt;
+};
+typedef std::vector<std::vector<Krawedz>> Graf;
 
 
-void wczytajGraf(std::string nazwaPliku);
+void wczytajGraf(const std::string& nazwaPliku);

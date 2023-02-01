@@ -2,7 +2,7 @@
 
 
 int main() {
-	
+	wczytajGraf("graf.txt");
 
 	return 0;
 }
